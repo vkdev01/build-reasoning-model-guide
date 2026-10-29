@@ -1,0 +1,109 @@
+site_name: Build a Reasoning Model From Scratch
+site_description: An exhaustive, hands-on guide to implementing reasoning models in PyTorch — evaluation, inference-time scaling, GRPO, and distillation — following Sebastian Raschka's free course.
+site_author: VK
+site_url: https://vkdev01.github.io/build-reasoning-model-guide/
+repo_url: https://github.com/vkdev01/build-reasoning-model-guide
+repo_name: vkdev01/build-reasoning-model-guide
+edit_uri: edit/main/docs/
+copyright: Prose MIT · companion code Apache-2.0 from rasbt/reasoning-from-scratch
+
+theme:
+  name: material
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/vkdev01
+  generator: false
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.critic
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - Orientation: start/orientation.md
+      - Setup: start/setup.md
+  - Chapters:
+      - chapters/index.md
+      - "2 · Generation & KV caching": chapters/ch02-generation.md
+      - "3 · Evaluation & the verifier": chapters/ch03-verifier.md
+      - "4 · Inference-time scaling": chapters/ch04-inference-scaling.md
+      - "5 · Self-refinement": chapters/ch05-self-refinement.md
+      - "6 · GRPO training": chapters/ch06-grpo.md
+      - "7 · Reading a training run": chapters/ch07-reading-runs.md
+      - "8 · Distillation": chapters/ch08-distillation.md
+  - Plan:
+      - Six-week plan: plan/six-week-plan.md
+      - Capstone: plan/capstone.md
+  - Notebooks:
+      - notebooks/index.md
+  - Reference:
+      - Results & benchmarks: reference/results.md
+      - Data & models: reference/data-and-models.md
+      - Troubleshooting: reference/troubleshooting.md
+      - Sources & licence: reference/sources.md
