@@ -1,0 +1,38 @@
+# Setup
+
+## Learning objectives
+
+- Choose hardware appropriate to the chapters you intend to run.
+- Install the course environment reproducibly.
+- Verify it with a smoke test that exercises weights, tokenizer, and KV cache.
+
+## Hardware
+
+| Setup | Chapters 2-5 | Chapters 6-8 | Verdict |
+| --- | --- | --- | --- |
+| Laptop, CPU only | Workable, slow — full 500-question eval is 43.6 min on an M4 | Impractical | Do weeks 1-3 locally, rent for 4-6 |
+| Apple Silicon (MPS) | Good — 37.5 min for 500 questions on an M4 GPU | Possible but hot; the author reported the M4 getting "too hot" on long evals | Fine for the first half |
+| One rented GPU (A100 / H100 / L40S) | Fast — H100: 3.3 min batched for 500 questions | Yes | The sane choice for chapters 6-8 |
+| Free Colab T4 | Yes — the weight file is 1.5 GB, fits in 16 GB with room for activations | Short runs only; session limits will cut a 500-step run | Good for a first GRPO taste |
+
+The repo's own recommendation for cloud is [Lightning AI
+Studio](https://lightning.ai/) — a persistent environment you can switch between
+CPU and GPU without reinstalling — or Google Colab. Any provider where the
+PyTorch install survives between sessions is worth more than one where it does
+not.
+
+## Install
+
+The `uv` route is what the author uses, and it pins PyTorch 2.10.0 through a
+committed lockfile. That pin is the difference between a working environment and
+an afternoon of debugging CUDA.
+
+```bash
+git clone https://github.com/rasbt/reasoning-from-scratch.git
+cd reasoning-from-scratch
+
+uv python pin 3.13      # 3.10-3.14 all work; 3.13 only needed for the Chainlit chat UI
+uv sync                 # installs torch 2.10.0 from uv.lock
+uv run jupyter lab
+```
+
