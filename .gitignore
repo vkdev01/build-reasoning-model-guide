@@ -1,0 +1,13 @@
+site/
+__pycache__/
+*.pyc
+.venv/
+qwen3/
+*.pth
+*.jsonl
+checkpoints/
+math_train.json
+math500_test.json
+deepseek-r1-*.json
+qwen3-235b-*.json
+.DS_Store
