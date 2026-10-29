@@ -1,0 +1,2 @@
+uv python pin 3.13
+uv sync
