@@ -1,0 +1,38 @@
+If you would rather not use `uv`:
+
+```bash
+pip install -r https://raw.githubusercontent.com/rasbt/reasoning-from-scratch/refs/heads/main/requirements.txt
+```
+
+That installs four things that matter:
+
+| Package | Version | Why |
+| --- | --- | --- |
+| `torch` | `>=2.10,<3` | Everything |
+| `tokenizers` | `>=0.21.2` | Qwen3 tokenizer, loaded from JSON |
+| `sympy` | `>=1.14` | The verifier's symbolic equality check |
+| `reasoning-from-scratch` | `>=0.1.2` | The package this guide imports |
+
+!!! tip "Pin the Python version deliberately"
+
+    The repo has no `.python-version` file. `uv python pin 3.13` creates one. If
+    you skip it, `uv` picks whatever it likes and your environment drifts from
+    the lockfile's expectations. Appendix G (the chat interface) genuinely needs
+    3.13 because Chainlit does not support 3.14.
+
+## Smoke test
+
+This is chapter 2's core end to end: download weights, load them, generate with
+a KV cache. If it prints a coherent paragraph, your environment is correct.
+
+```python title="smoke_test.py"
+from pathlib import Path
+import torch
+from reasoning_from_scratch.qwen3 import (
+    Qwen3Model, QWEN_CONFIG_06_B, Qwen3Tokenizer, download_qwen3_small,
+)
+from reasoning_from_scratch.ch02 import get_device, generate_text_basic_stream_cache
+
+device = get_device()          # cuda / mps / xpu / cpu; sets TF32 on CUDA
+download_qwen3_small(kind="base", out_dir="qwen3")   # 1.5 GB, cached after first run
+
