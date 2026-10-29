@@ -1,2 +1,0 @@
-├── ch02/ ... ch08/   notebooks
-└── chG/   Chainlit chat interface
